@@ -171,16 +171,37 @@ GROUP BY e.employee_id, e.first_name, e.last_name
 ORDER BY total_sales DESC
 LIMIT 1;
 --26
-
+select  e.department, avg(s.quantity) as average_quantity
+from company_resources.sales_table  s, company_resources.employees_table  e
+where e.employee_id=s.employee_id
+group by e.department;
 --27
-
-
+select s.employee_id, s.sales_date
+from company_resources.sales_table s
+where sales_date between '2020-12-31' and '2022-1-1';
 --28
-
-
+SELECT s.employee_id, e.first_name, e.last_name, SUM(s.quantity) AS total_quantity
+FROM
+  company_resources.sales_table s, company_resources.employees_table e
+where s.employee_id = e.employee_id
+GROUP BY s.employee_id, e.first_name, e.last_name
+ORDER by total_quantity DESC
+LIMIT 3;
 --29
-
+select e.department, SUM(s.quantity) AS total_quantity
+from company_resources.sales_table s, company_resources.employees_table e
+group by e.department;
 --30
+select p.catagory, sum(s.total) as revenue
+from company_resources.products_table p, company_resources.sales_table s
+group by p.catagory;
+
+
+
+
+
+
+
 
 
 
